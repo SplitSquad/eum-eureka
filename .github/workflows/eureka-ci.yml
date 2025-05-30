@@ -59,11 +59,11 @@ jobs:
           cd helm-charts/eum-backend || { echo "helm-charts/eum-backend 디렉토리가 없습니다"; exit 1; }
           # values.yaml 파일이 있는지 확인
           if [ -f "values.yaml" ]; then
-            echo "values.yaml 파일 발견 - eureka 서비스 이미지 태그 업데이트 중..."
-            # eureka 서비스의 이미지 태그 업데이트
-            sed -i "/^  eureka:/,/^  [a-zA-Z]/s|tag: .*|tag: ${IMAGE_TAG}|" values.yaml
-            echo "업데이트된 eureka 서비스 이미지 태그:"
-            sed -n '/^  eureka:/,/^  [a-zA-Z]/p' values.yaml | grep "tag:"
+            echo "values.yaml 파일 발견 - eureka-server 서비스 이미지 태그 업데이트 중..."
+            # eureka-server 서비스의 이미지 태그 업데이트
+            sed -i "/^  eureka-server:/,/^  [a-zA-Z]/s|tag: .*|tag: ${IMAGE_TAG}|" values.yaml
+            echo "업데이트된 eureka-server 서비스 이미지 태그:"
+            sed -n '/^  eureka-server:/,/^  [a-zA-Z]/p' values.yaml | grep "tag:"
           else
             echo "ERROR: values.yaml 파일이 없습니다!"
             echo "디렉토리 내용:"
@@ -75,7 +75,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
-          git commit -m "Update eureka service image to ${IMAGE_TAG}"
+          git commit -m "Update eureka-server service image to ${IMAGE_TAG}"
           git push
           echo "Helm values 업데이트 완료: ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}"
           echo "ArgoCD가 변경사항을 감지하여 자동으로 배포할 예정입니다."
