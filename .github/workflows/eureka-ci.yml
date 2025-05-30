@@ -43,7 +43,7 @@ jobs:
       - name: Update helm values in manifest repository
         env:
           ECR_REGISTRY: 879657431997.dkr.ecr.ap-northeast-2.amazonaws.com
-          ECR_REPOSITORY: eum-eureka
+          ECR_REPOSITORY: eum-eureka-server
           IMAGE_TAG: ${{ github.sha }}
           GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
